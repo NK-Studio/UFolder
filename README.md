@@ -11,6 +11,6 @@ UFolder 패키지를 설치하려면 다음 단계가 필요합니다.
 4. `https://github.com/NK-Studio/UFolder.git` 를 입력하고 추가 버튼을 클릭하세요.
 
 ### Unity Package
-[Releases](https://github.com/NK-Studio/UFolder.git/releases)에서 최신 버전의 패키지를 다운로드 받아 설치합니다.
+[Releases](https://github.com/NK-Studio/UFolder/releases)에서 최신 버전의 패키지를 다운로드 받아 설치합니다.
 ## 사용법
 
