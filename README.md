@@ -1,6 +1,6 @@
 # UFolder
 ## 소개
-![image.png](Image%2Fimage.png)  
+![image1.png](Image%2Fimage1.png)  
 UFolder는 Hierarchy에 있는 오브젝트를 폴더로 분류해주는 유니티 에디터 확장입니다.
 
 ## 설치
@@ -14,4 +14,6 @@ UFolder 패키지를 설치하려면 다음 단계가 필요합니다.
 ### Unity Package
 [Releases](https://github.com/NK-Studio/UFolder/releases)에서 최신 버전의 패키지를 다운로드 받아 설치합니다.
 ## 사용법
-
+![image2.png](Image%2Fimage2.png)
+Hierarchy에서 오른쪽 마우스 -> Create Folder를 클릭하면 폴더가 생성됩니다.  
+(또는 폴더에 담고 싶은 오브젝트를 선택하고 단축키 G를 누르면 됩니다.)
