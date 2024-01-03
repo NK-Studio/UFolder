@@ -2,10 +2,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace NKStudio
+namespace NKStudio.UFolder.Editor
 {
     [InitializeOnLoad]
-    public class HierarchyGUI : Editor
+    public class HierarchyGUI : UnityEditor.Editor
     {
         static HierarchyGUI()
         {
@@ -24,7 +24,7 @@ namespace NKStudio
 
             if (GroupObjectsEditor.AutoAddTag("Folder"))
             {
-                if (go.CompareTag("Folder"))
+                if (go.CompareTag("Folder") && !EditorApplication.isPlaying)
                     DrawIcon(go); 
             }
         }
@@ -47,7 +47,7 @@ namespace NKStudio
         private static void ChangeFolderIconActive(int instanceId, GameObject obj)
         {
             int childCount = obj.transform.childCount;
-            bool isExtended = SceneHierarchyUtility.IsExpanded(obj);
+            bool isExtended = UFolderUtility.IsExpanded(obj);
             string iconName;
             bool hasChild = childCount > 0;
             if (hasChild)
@@ -87,7 +87,7 @@ namespace NKStudio
         private static void ChangeFolderIconDeActive(int instanceId, GameObject obj)
         {
             int childCount = obj.transform.childCount;
-            bool isExtended = SceneHierarchyUtility.IsExpanded(obj);
+            bool isExtended = UFolderUtility.IsExpanded(obj);
             string iconName;
             bool hasChild = childCount > 0;
             if (hasChild)

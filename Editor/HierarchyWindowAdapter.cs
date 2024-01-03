@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace NKStudio
+namespace NKStudio.UFolder.Editor
 {
     [InitializeOnLoad]
     public static class HierarchyWindowAdapter
@@ -26,16 +26,26 @@ namespace NKStudio
             TreeViewItemsMethod = assembly.GetType("UnityEditor.GameObjectTreeViewDataSource").GetMethod("GetRows", BindingFlags.Instance | BindingFlags.Public);
         }
 
+        /// <summary>
+        /// Retrieves all hierarchy windows in the Unity editor.
+        /// </summary>
+        /// <param name="forceUpdate">Optional. If true, forces an update to the windows cache. Default is false.</param>
+        /// <returns>An IEnumerable collection of EditorWindow objects representing all opened hierarchy windows.</returns>
         private static IEnumerable<EditorWindow> GetAllHierarchyWindows(bool forceUpdate = false)
         {
             if (forceUpdate || _nextWindowsUpdate < EditorApplication.timeSinceStartup)
             {
                 _nextWindowsUpdate = EditorApplication.timeSinceStartup + 2.0;
-                _windowsCache = HierarchyEditorUtility.GetAllWindowsByType("UnityEditor.SceneHierarchyWindow").ToArray();
+                _windowsCache = UFolderUtility.GetAllWindowsByType("UnityEditor.SceneHierarchyWindow").ToArray();
             }
             return _windowsCache;
         }
 
+        /// <summary>
+        /// GetTreeViewItems method retrieves the TreeViewItems from the specified EditorWindow.
+        /// </summary>
+        /// <param name="window">The EditorWindow from which to retrieve TreeViewItems.</param>
+        /// <returns>An IEnumerable collection of TreeViewItem objects.</returns>
         private static IEnumerable<TreeViewItem> GetTreeViewItems(EditorWindow window)
         {
             object obj1 = SceneHierarchyField.GetValue(window);

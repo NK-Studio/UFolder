@@ -3,10 +3,9 @@ using UnityEngine;
 using System.Linq;
 using System;
 using System.Collections.Generic;
-using UFolder;
 using Object = UnityEngine.Object;
 
-namespace NKStudio
+namespace NKStudio.UFolder.Editor
 {
     struct AABB
     {
@@ -20,7 +19,7 @@ namespace NKStudio
         }
     }
 
-    public class GroupObjectsEditor : Editor
+    public class GroupObjectsEditor : UnityEditor.Editor
     {
         private static Transform[] _lastSelectedTransforms;
         private static int _selectedItemsLeft;
@@ -33,19 +32,18 @@ namespace NKStudio
         private static void CreateFolderCommand(MenuCommand menuCommand)
         {
             GameObject obj = new(FolderName);
-            obj.AddComponent<Folder>();
-
+            
             int count = Selection.gameObjects.Length;
             if (count == 1)
             {
                 bool isRectTransform = Selection.gameObjects[0].TryGetComponent(out RectTransform _);
                 if (isRectTransform)
                     obj.AddComponent<RectTransform>();
-                
+
                 obj.transform.SetParent(Selection.gameObjects[0].transform);
                 ResetTransform(obj.transform);
             }
-            
+
             Undo.RegisterCreatedObjectUndo(obj, obj.name);
             EditorUtility.SetDirty(obj);
             Selection.activeGameObject = obj;
@@ -62,6 +60,9 @@ namespace NKStudio
             CreateFolder(menuCommand);
         }
 
+        [MenuItem("GameObject/Change Selection Folder/Set Behaviour to None", true, 1100)]
+        [MenuItem("GameObject/Change Selection Folder/Set Behaviour to PlayOnDestroy", true, 1101)]
+        [MenuItem("GameObject/Change Selection Folder/Set Behaviour to BuildOnDestroy", true, 1102)]
         [MenuItem("GameObject/Create Selection Folder _g", true, 0)]
         private static bool ValidateSelectionFolderCommand(MenuCommand menuCommand)
             => Selection.gameObjects.Length > 0;
@@ -99,7 +100,7 @@ namespace NKStudio
 
             return true;
         }
-        
+
         /// <summary>
         /// 먼저 시스템에 태그를 추가한 다음 게임 개체에 태그를 추가합니다.
         /// </summary>
@@ -147,7 +148,7 @@ namespace NKStudio
             target.localRotation = Quaternion.identity;
             target.localScale = Vector3.one;
         }
-        
+
         /// <summary>
         /// 선택한 객체를 폴더화 시킵니다.
         /// </summary>
@@ -199,7 +200,7 @@ namespace NKStudio
                 groupSiblingIndex = Math.Min(groupSiblingIndex, transform.GetSiblingIndex());
             }
             bool isRectTransform;
-            
+
             if (!groupParent)
                 isRectTransform = false;
             else
@@ -209,8 +210,7 @@ namespace NKStudio
             GameObject go = new(FolderName);
             if (isRectTransform)
                 go.AddComponent<RectTransform>();
-            go.AddComponent<Folder>();
-
+            
             if (isRectTransform)
             {
                 var calculateData = CalculateCenterAndSize(Selection.gameObjects);
