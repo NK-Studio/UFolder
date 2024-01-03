@@ -1,6 +1,6 @@
 # UFolder
 ## 소개
-![image.png](Image%2Fimage.png)
+![image.png](Image%2Fimage.png)  
 UFolder는 Hierarchy에 있는 오브젝트를 폴더로 분류해주는 유니티 에디터 확장입니다.
 
 ## 설치
