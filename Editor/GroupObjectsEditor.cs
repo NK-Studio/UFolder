@@ -61,10 +61,7 @@ namespace NKStudio.UFolder.Editor
         {
             CreateFolder(menuCommand);
         }
-
-        [MenuItem("GameObject/Change Selection Folder/Set Behaviour to None", true, 1100)]
-        [MenuItem("GameObject/Change Selection Folder/Set Behaviour to PlayOnDestroy", true, 1101)]
-        [MenuItem("GameObject/Change Selection Folder/Set Behaviour to BuildOnDestroy", true, 1102)]
+        
         [MenuItem("GameObject/Create Selection Folder _g", true, 0)]
         private static bool ValidateSelectionFolderCommand(MenuCommand menuCommand)
             => Selection.gameObjects.Length > 0;

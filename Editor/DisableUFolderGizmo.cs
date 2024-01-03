@@ -2,11 +2,10 @@
 using System.Reflection;
 using UnityEditor.Callbacks;
 using System.Collections;
-using UnityEngine;
 
 namespace NKStudio.UFolder.Editor
 {
-    public static class DisableUFolderSceneGizmo
+    public static class DisableUFolderGizmo
     {
         [DidReloadScripts]
         private static void OnScriptsReloaded()
@@ -30,8 +29,6 @@ namespace NKStudio.UFolder.Editor
             {
                 string className = scriptClassField.GetValue(a) as string;
 
-                Debug.Log(className);
-                
                 if(!string.Equals(className, "UFolder"))
                     continue;
 

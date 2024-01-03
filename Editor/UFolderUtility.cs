@@ -9,17 +9,6 @@ namespace NKStudio.UFolder.Editor
 {
     public static class UFolderUtility
     {
-        /// <summary>
-        /// Hides all components in the specified folder and its children.
-        /// </summary>
-        /// <param name="folder">The folder that contains the components.</param>
-        internal static void HideAllComponent(GameObject folder)
-        {
-            var transform = folder.transform;
-            transform.hideFlags = HideFlags.NotEditable | HideFlags.HideInInspector;
-            folder.hideFlags = HideFlags.HideInInspector;
-        }
-        
         internal static IEnumerable<EditorWindow> GetAllWindowsByType(string type) => Resources.FindObjectsOfTypeAll(typeof(EditorWindow)).Where(obj => obj.GetType().ToString() == type).Select(obj => (EditorWindow)obj);
         
         /// <summary>
@@ -56,14 +45,8 @@ namespace NKStudio.UFolder.Editor
 
             return null;
         }
-        
-        [MenuItem("Tools/UFolder/Settings", priority = 0)]
-        private static void Settings()
-        {
-            EditorGUIUtility.PingObject(Selection.activeObject);
-        }
 
-        [MenuItem("Tools/UFolder/About", priority = Int32.MaxValue)]
+        [MenuItem("Tools/UFolder/About", priority = int.MaxValue)]
         private static void About()
         {
             string path = AssetDatabase.GUIDToAssetPath("8fee9135ba53440da42f4924bb4012ed");
