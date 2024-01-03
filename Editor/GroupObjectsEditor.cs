@@ -40,6 +40,8 @@ namespace NKStudio.UFolder.Editor
                 if (isRectTransform)
                     obj.AddComponent<RectTransform>();
 
+                obj.AddComponent<UFolder.Runtime.UFolder>();
+
                 obj.transform.SetParent(Selection.gameObjects[0].transform);
                 ResetTransform(obj.transform);
             }
@@ -210,6 +212,8 @@ namespace NKStudio.UFolder.Editor
             GameObject go = new(FolderName);
             if (isRectTransform)
                 go.AddComponent<RectTransform>();
+            
+            go.AddComponent<UFolder.Runtime.UFolder>();
             
             if (isRectTransform)
             {
