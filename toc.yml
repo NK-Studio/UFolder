@@ -1,0 +1,6 @@
+- name: Manual
+  href: manual/
+- name: Changelog
+  href: changelog/
+- name: License
+  href: license/

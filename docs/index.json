@@ -1,0 +1,37 @@
+{
+  "api/index.html": {
+    "href": "api/index.html",
+    "title": "| USingleton",
+    "keywords": "이 패키지의 Scripting API 기술 자료입니다."
+  },
+  "changelog/CHANGELOG.html": {
+    "href": "changelog/CHANGELOG.html",
+    "title": "Changelog | USingleton",
+    "keywords": "Changelog [1.1.2] - 2024-01-03 added 사용 방법 빠진 내용 추가 [1.1.1] - 2024-01-03 remove 최종 배포 형태 완료 [1.1.0] - 2024-01-03 remove 기능 경량화 [1.0.1] - 2023-10-23 fixed 폴더 컴포넌트 다중 선택 수정이 가능하도록 변경 초기에 폴더 태그가 없을시 오류가 발생하던 문제 수정 [1.0.0] - 2023-10-19 Init 최초 제작 완료"
+  },
+  "license/LICENSE.html": {
+    "href": "license/LICENSE.html",
+    "title": "| USingleton",
+    "keywords": "MIT License Copyright (c) 2023 NK Studio Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+  },
+  "manual/GettingStarted.html": {
+    "href": "manual/GettingStarted.html",
+    "title": "시작해요 | USingleton",
+    "keywords": "시작해요 UFolder는 계층 구조를 정리할 수 있는 유니티 에디터 확장입니다. 폴더 만들기 Hierarchy에서 오른쪽 마우스 -> Create Folder를 클릭하면 폴더가 생성됩니다. 다중 선택하여 폴더에 넣기 폴더에 담고 싶은 오브젝트를 다중으로 선택한 상태에서 Create Selected Folder를 클릭하면 폴더가 생성되고 선택한 오브젝트가 폴더에 들어갑니다. Tip 폴더에 담고 싶은 오브젝트를 선택하고 단축키 G를 누르면 폴더를 생성할 수 있습니다."
+  },
+  "manual/index.html": {
+    "href": "manual/index.html",
+    "title": "UFolder 개요 | USingleton",
+    "keywords": "UFolder 개요 UFolder는 Hierarchy에 있는 오브젝트를 폴더로 분류해주는 유니티 에디터 확장입니다. UFolder 특징 폴더라는 컨셉을 도입하여 계층 구조를 정리할 수 있습니다. 이는 유니티 에디터에서 계층 구조를 정리하는 데에 큰 도움이 됩니다. Note 누구나 쉽게 사용할 수 있도록 설계되었습니다."
+  },
+  "manual/Installation.html": {
+    "href": "manual/Installation.html",
+    "title": "설치하기 | USingleton",
+    "keywords": "설치하기 Git UPM UFolder 패키지를 설치하려면 다음 단계가 필요합니다. Git이 설치되어 있는지 확인하십시오. Package Manager를 오픈합니다. +버튼을 클릭하고, Add package from git URL을 클릭합니다. https://github.com/NK-Studio/UFolder.git#UPM 를 입력하고 추가 버튼을 클릭하세요. UnityPackage GitHub Releases에서 최신 버전의 패키지를 다운로드 받아 설치합니다."
+  },
+  "manual/KnownIssues.html": {
+    "href": "manual/KnownIssues.html",
+    "title": "알려진 문제 | USingleton",
+    "keywords": "알려진 문제 유니티에서는 사실... 계층 구조를 복잡하게 구성하는 것은 좋지 않습니다. 최대한 부모-자식 관계를 만들지 않도록 하고, 만들더라도 최대한 단순하게 구성하는 것이 좋습니다. 그러한 부분에서 UFolder를 너무 많이 사용하면, 엄청 심각하진 않지만 마음이 좀 찜찜한 상태로 개발할 수 있습니다. 언젠가... 이런 문제를 해결할 수 있는 방법을 찾아보겠습니다. 😇 (아마도...)"
+  }
+}
