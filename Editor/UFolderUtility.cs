@@ -32,14 +32,16 @@ namespace NKStudio.UFolder.Editor
         {
             object sceneHierarchy = HierarchyWindowAdapter.GetFirstHierarchy();
 
+            if (sceneHierarchy == null)
+                return null;
+            
             MethodInfo methodInfo = sceneHierarchy
                 .GetType()
                 .GetMethod("GetExpandedGameObjects");
-
+            
             if (methodInfo != null)
             {
-                object result = methodInfo.Invoke(sceneHierarchy, Array.Empty<object>());
-
+                object result = methodInfo.Invoke(sceneHierarchy, null);   
                 return (List<GameObject>)result;
             }
 
@@ -50,7 +52,6 @@ namespace NKStudio.UFolder.Editor
         private static void About()
         {
             string path = AssetDatabase.GUIDToAssetPath("8fee9135ba53440da42f4924bb4012ed");
-            ;
             TextAsset packageJson = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
             PackageInfo info = JsonUtility.FromJson<PackageInfo>(packageJson.text);
 

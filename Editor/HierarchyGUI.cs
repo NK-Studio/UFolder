@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -48,6 +49,7 @@ namespace NKStudio.UFolder.Editor
         {
             int childCount = obj.transform.childCount;
             bool isExtended = UFolderUtility.IsExpanded(obj);
+
             string iconName;
             bool hasChild = childCount > 0;
             if (hasChild)
