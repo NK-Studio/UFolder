@@ -1,37 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace NKStudio.UFolder.Editor
+namespace NKStudio
 {
     [InitializeOnLoad]
     public static class HierarchyWindowAdapter
     {
+        private const string EditorWindowType = "UnityEditor.SceneHierarchyWindow";
+        private const double EditorWindowsCacheTtl = 2;
+
+        private const BindingFlags InstancePrivate = BindingFlags.Instance | BindingFlags.NonPublic;
+        private const BindingFlags InstancePublic = BindingFlags.Instance | BindingFlags.Public;
+        
         private static readonly FieldInfo SceneHierarchyField;
         private static readonly FieldInfo TreeViewField;
         private static readonly PropertyInfo TreeViewDataProperty;
         private static readonly MethodInfo TreeViewItemsMethod;
+        
         private static double _nextWindowsUpdate;
-#if UNITY_EDITOR_OSX
-        private static int _nextMacUpdate = 2;
-#endif
         private static EditorWindow[] _windowsCache;
-
+        
         static HierarchyWindowAdapter()
         {
-            Assembly assembly = Assembly.GetAssembly(typeof(EditorWindow));
-            SceneHierarchyField = assembly.GetType("UnityEditor.SceneHierarchyWindow")
-                .GetField("m_SceneHierarchy", BindingFlags.Instance | BindingFlags.NonPublic);
-            TreeViewField = assembly.GetType("UnityEditor.SceneHierarchy")
-                .GetField("m_TreeView", BindingFlags.Instance | BindingFlags.NonPublic);
-            TreeViewDataProperty = assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewController")
-                .GetProperty("data", BindingFlags.Instance | BindingFlags.Public);
-            TreeViewItemsMethod = assembly.GetType("UnityEditor.GameObjectTreeViewDataSource")
-                .GetMethod("GetRows", BindingFlags.Instance | BindingFlags.Public);
+            var assembly = Assembly.GetAssembly(typeof(EditorWindow));
+
+            var hierarchyWindowType = assembly.GetType("UnityEditor.SceneHierarchyWindow");
+            SceneHierarchyField = hierarchyWindowType.GetField("m_SceneHierarchy", InstancePrivate);
+
+            var sceneHierarchyType = assembly.GetType("UnityEditor.SceneHierarchy");
+            TreeViewField = sceneHierarchyType.GetField("m_TreeView", InstancePrivate);
+
+            var treeViewType = assembly.GetType("UnityEditor.IMGUI.Controls.TreeViewController");
+            TreeViewDataProperty = treeViewType.GetProperty("data", InstancePublic);
+
+            var treeViewDataType = assembly.GetType("UnityEditor.GameObjectTreeViewDataSource");
+            TreeViewItemsMethod = treeViewDataType.GetMethod("GetRows", InstancePublic);
         }
 
         /// <summary>
@@ -41,18 +48,10 @@ namespace NKStudio.UFolder.Editor
         /// <returns>An IEnumerable collection of EditorWindow objects representing all opened hierarchy windows.</returns>
         private static IEnumerable<EditorWindow> GetAllHierarchyWindows(bool forceUpdate = false)
         {
-#if UNITY_EDITOR_OSX
-            if (_nextMacUpdate > 0)
-            {
-                _nextMacUpdate -= 1;
-                return null;
-            }
-#endif
-
             if (forceUpdate || _nextWindowsUpdate < EditorApplication.timeSinceStartup)
             {
-                _nextWindowsUpdate = EditorApplication.timeSinceStartup + 2.0;
-                _windowsCache = UFolderUtility.GetAllWindowsByType("UnityEditor.SceneHierarchyWindow").ToArray();
+                _nextWindowsUpdate = EditorApplication.timeSinceStartup + EditorWindowsCacheTtl;
+                _windowsCache = UFolderUtility.GetAllWindowsByType(EditorWindowType).ToArray();
             }
 
             return _windowsCache;
@@ -76,21 +75,15 @@ namespace NKStudio.UFolder.Editor
         /// </summary>
         /// <param name="instanceId">아이콘을 적용할 게임 오브젝트 InstanceID</param>
         /// <param name="icon">지정할 아이콘 텍스쳐</param>
-        internal static void ApplyIconByInstanceId(int instanceId, Texture2D icon)
+        public static void ApplyIconByInstanceId(int instanceId, Texture2D icon)
         {
-            IEnumerable<EditorWindow> getEditorWindows = GetAllHierarchyWindows();
+            var hierarchyWindows = GetAllHierarchyWindows();
 
-            if (getEditorWindows == null)
-                return;
-
-            foreach (EditorWindow allHierarchyWindow in getEditorWindows)
+            foreach (var window in hierarchyWindows)
             {
-                TreeViewItem treeViewItem =
-                    GetTreeViewItems(allHierarchyWindow).FirstOrDefault(item => item.id == instanceId);
-                if (treeViewItem != null)
-                {
-                    treeViewItem.icon = icon;
-                }
+                var treeViewItems = GetTreeViewItems(window);
+                var treeViewItem = treeViewItems.FirstOrDefault(item => item.id == instanceId);
+                if (treeViewItem != null) treeViewItem.icon = icon;
             }
         }
 
@@ -100,14 +93,12 @@ namespace NKStudio.UFolder.Editor
         /// <returns></returns>
         internal static object GetFirstHierarchy()
         {
-            // IEnumerable<EditorWindow> allHierarchyWindows = GetAllHierarchyWindows();
-            //
-            // foreach (EditorWindow allHierarchyWindow in allHierarchyWindows)
-            // {
-            //     object obj1 = SceneHierarchyField.GetValue(allHierarchyWindow);
-            //     if (obj1 != null)
-            //         return obj1;
-            // }
+            foreach (EditorWindow allHierarchyWindow in GetAllHierarchyWindows())
+            {
+                object obj1 = SceneHierarchyField.GetValue(allHierarchyWindow);
+                if (obj1 != null)
+                    return obj1;
+            }
 
             return null;
         }

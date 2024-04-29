@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEditor.Callbacks;
 using System.Collections;
 
-namespace NKStudio.UFolder.Editor
+namespace NKStudio
 {
     public static class DisableUFolderGizmo
     {

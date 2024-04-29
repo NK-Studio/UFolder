@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using Object = UnityEngine.Object;
 
-namespace NKStudio.UFolder.Editor
+namespace NKStudio
 {
     struct AABB
     {
@@ -19,7 +19,7 @@ namespace NKStudio.UFolder.Editor
         }
     }
 
-    public class GroupObjectsEditor : UnityEditor.Editor
+    public class GroupObjectsEditor : Editor
     {
         private static Transform[] _lastSelectedTransforms;
         private static int _selectedItemsLeft;
@@ -39,8 +39,6 @@ namespace NKStudio.UFolder.Editor
                 bool isRectTransform = Selection.gameObjects[0].TryGetComponent(out RectTransform _);
                 if (isRectTransform)
                     obj.AddComponent<RectTransform>();
-
-                obj.AddComponent<UFolder.Runtime.UFolder>();
 
                 obj.transform.SetParent(Selection.gameObjects[0].transform);
                 ResetTransform(obj.transform);
@@ -209,8 +207,6 @@ namespace NKStudio.UFolder.Editor
             GameObject go = new(FolderName);
             if (isRectTransform)
                 go.AddComponent<RectTransform>();
-            
-            go.AddComponent<UFolder.Runtime.UFolder>();
             
             if (isRectTransform)
             {
