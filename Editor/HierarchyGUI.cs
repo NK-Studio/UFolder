@@ -8,6 +8,9 @@ namespace NKStudio
     {
         static HierarchyGUI()
         {
+            if (EditorApplication.isPlaying)
+                return;
+            
             EditorApplication.hierarchyWindowItemOnGUI += (id, _) => HierarchyWindowItemOnGUI(id);
         }
 
@@ -23,7 +26,7 @@ namespace NKStudio
 
             if (GroupObjectsEditor.AutoAddTag("Folder"))
             {
-                if (go.CompareTag("Folder") && !EditorApplication.isPlaying)
+                if (go.CompareTag("Folder"))
                     DrawIcon(go); 
             }
         }
