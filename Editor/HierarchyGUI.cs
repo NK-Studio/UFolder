@@ -189,24 +189,24 @@ namespace NKStudio
                 if (go.CompareTag("Folder"))
                 {
                     string styleClass = GetFolderStyleClass(viewItem, go);
-                    if (!string.IsNullOrEmpty(styleClass) && viewItem.Icon != null)
+                    if (!string.IsNullOrEmpty(styleClass) && viewItem.RowContainer != null)
                     {
-                        viewItem.Icon.AddToClassList(styleClass);
+                        viewItem.RowContainer.AddToClassList(styleClass);
                     }
                 }
             }
         }
 
         /// <summary>
-        /// ViewItem의 이전 스타일(USS 클래스 오버라이드)을 초기화합니다.
+        /// ViewItem의 이전 스타일(RowContainer에 등록된 USS 클래스)을 초기화합니다.
         /// </summary>
         private static void ResetViewItemStyle(HierarchyViewItem viewItem)
         {
-            if (viewItem.Icon != null)
+            if (viewItem.RowContainer != null)
             {
                 foreach (var className in UFolderClassNames)
                 {
-                    viewItem.Icon.RemoveFromClassList(className);
+                    viewItem.RowContainer.RemoveFromClassList(className);
                 }
             }
         }

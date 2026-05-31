@@ -1,4 +1,8 @@
 # Changelog
+## [1.4.1] - 2026-05-31
+### Refactored
+- C# 코드가 행 아이콘(viewItem.Icon)에 직접 스타일을 주입하는 대신, RowContainer에 USS 스타일 클래스를 부여하고 USS Descendant Selector(`.hierarchy-item__icon`)를 활용하여 내장 폴더 아이콘을 교체하도록 아키텍처 개선
+
 ## [1.4.0] - 2026-05-31
 ### Added
 - Unity 6.5+ 신규 Hierarchy API 커스텀 폴더 아이콘을 C# procedural 방식에서 UI Toolkit USS (.uss) 스타일시트 방식으로 전면 마이그레이션 및 적용

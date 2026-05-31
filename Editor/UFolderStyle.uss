@@ -3,28 +3,28 @@
 /* --- Active Folders --- */
 
 /* Dark skin - Active */
-.ufolder-dark-active-child-expanded {
+.unity-multi-column-view__row-container.ufolder-dark-active-child-expanded .hierarchy-item__icon {
     background-image: resource("FolderOpened On Icon");
 }
 
-.ufolder-dark-active-child-collapsed {
+.unity-multi-column-view__row-container.ufolder-dark-active-child-collapsed .hierarchy-item__icon {
     background-image: resource("Folder On Icon");
 }
 
-.ufolder-dark-active-empty {
+.unity-multi-column-view__row-container.ufolder-dark-active-empty .hierarchy-item__icon {
     background-image: resource("FolderEmpty On Icon");
 }
 
 /* Light skin - Active */
-.ufolder-light-active-child-expanded {
+.unity-multi-column-view__row-container.ufolder-light-active-child-expanded .hierarchy-item__icon {
     background-image: resource("FolderOpened Icon");
 }
 
-.ufolder-light-active-child-collapsed {
+.unity-multi-column-view__row-container.ufolder-light-active-child-collapsed .hierarchy-item__icon {
     background-image: resource("Folder Icon");
 }
 
-.ufolder-light-active-empty {
+.unity-multi-column-view__row-container.ufolder-light-active-empty .hierarchy-item__icon {
     background-image: resource("FolderEmpty Icon");
 }
 
@@ -32,27 +32,27 @@
 /* --- DeActive Folders --- */
 
 /* Dark skin - DeActive */
-.ufolder-dark-deactive-child-expanded {
+.unity-multi-column-view__row-container.ufolder-dark-deactive-child-expanded .hierarchy-item__icon {
     background-image: resource("FolderOpened Icon");
 }
 
-.ufolder-dark-deactive-child-collapsed {
+.unity-multi-column-view__row-container.ufolder-dark-deactive-child-collapsed .hierarchy-item__icon {
     background-image: resource("Folder Icon");
 }
 
-.ufolder-dark-deactive-empty {
+.unity-multi-column-view__row-container.ufolder-dark-deactive-empty .hierarchy-item__icon {
     background-image: resource("FolderEmpty Icon");
 }
 
 /* Light skin - DeActive */
-.ufolder-light-deactive-child-expanded {
+.unity-multi-column-view__row-container.ufolder-light-deactive-child-expanded .hierarchy-item__icon {
     background-image: resource("FolderOpened On Icon");
 }
 
-.ufolder-light-deactive-child-collapsed {
+.unity-multi-column-view__row-container.ufolder-light-deactive-child-collapsed .hierarchy-item__icon {
     background-image: resource("Folder On Icon");
 }
 
-.ufolder-light-deactive-empty {
+.unity-multi-column-view__row-container.ufolder-light-deactive-empty .hierarchy-item__icon {
     background-image: resource("FolderEmpty On Icon");
 }
