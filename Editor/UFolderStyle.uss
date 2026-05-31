@@ -4,28 +4,28 @@
 
 /* Dark skin - Active */
 .unity-multi-column-view__row-container.ufolder-dark-active-child-expanded .hierarchy-item__icon {
-    background-image: resource("FolderOpened On Icon");
+    background-image: resource("FolderOpened On Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-dark-active-child-collapsed .hierarchy-item__icon {
-    background-image: resource("Folder On Icon");
+    background-image: resource("Folder On Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-dark-active-empty .hierarchy-item__icon {
-    background-image: resource("FolderEmpty On Icon");
+    background-image: resource("FolderEmpty On Icon") !important;
 }
 
 /* Light skin - Active */
 .unity-multi-column-view__row-container.ufolder-light-active-child-expanded .hierarchy-item__icon {
-    background-image: resource("FolderOpened Icon");
+    background-image: resource("FolderOpened Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-light-active-child-collapsed .hierarchy-item__icon {
-    background-image: resource("Folder Icon");
+    background-image: resource("Folder Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-light-active-empty .hierarchy-item__icon {
-    background-image: resource("FolderEmpty Icon");
+    background-image: resource("FolderEmpty Icon") !important;
 }
 
 
@@ -33,28 +33,28 @@
 
 /* Dark skin - DeActive */
 .unity-multi-column-view__row-container.ufolder-dark-deactive-child-expanded .hierarchy-item__icon {
-    background-image: resource("FolderOpened Icon");
+    background-image: resource("FolderOpened Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-dark-deactive-child-collapsed .hierarchy-item__icon {
-    background-image: resource("Folder Icon");
+    background-image: resource("Folder Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-dark-deactive-empty .hierarchy-item__icon {
-    background-image: resource("FolderEmpty Icon");
+    background-image: resource("FolderEmpty Icon") !important;
 }
 
 /* Light skin - DeActive */
 .unity-multi-column-view__row-container.ufolder-light-deactive-child-expanded .hierarchy-item__icon {
-    background-image: resource("FolderOpened On Icon");
+    background-image: resource("FolderOpened On Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-light-deactive-child-collapsed .hierarchy-item__icon {
-    background-image: resource("Folder On Icon");
+    background-image: resource("Folder On Icon") !important;
 }
 
 .unity-multi-column-view__row-container.ufolder-light-deactive-empty .hierarchy-item__icon {
-    background-image: resource("FolderEmpty On Icon");
+    background-image: resource("FolderEmpty On Icon") !important;
 }
 
 
