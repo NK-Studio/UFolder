@@ -1,4 +1,15 @@
 # Changelog
+## [1.5.1] - 2026-05-31
+### Changed
+- USS 기반 스타일 적용 방식을 완전히 롤백하고, 순수 C# 절차적 코드로 아이콘을 오버라이드하도록 마이그레이션
+- `OnBindViewItem` 콜백 내에서 `StyleKeyword.Null`을 이용해 명시적으로 아이콘 스타일을 우선 초기화한 후, 텍스처(Texture2D)를 직접 `StyleBackground`로 주입하도록 적용
+- `UFolderStyleDark.uss` 및 `UFolderStyleLight.uss` 스타일시트와 관련된 로직 및 파일 전면 제거
+
+## [1.5.0] - 2026-05-31
+### Added
+- USS 스타일시트를 다크 스킨(`UFolderStyleDark.uss`)과 라이트 스킨(`UFolderStyleLight.uss`)으로 물리적으로 분리
+- Unity Editor 스킨 테마(`EditorGUIUtility.isProSkin`)에 따라 해당하는 전용 USS 스타일시트만 동적으로 선별 로드 및 교체하도록 C# 바인딩 로직 최적화
+
 ## [1.4.3] - 2026-05-31
 ### Fixed
 - Unity Hierarchy 창에서 행이 선택(Selected)되었을 때 에디터 빌트인 테마 스타일에 의해 커스텀 폴더 아이콘이 덮어쓰여져 사라지던 이슈 수정 (!important 우선순위 추가)
