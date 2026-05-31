@@ -1,4 +1,8 @@
 # Changelog
+## [1.4.2] - 2026-05-31
+### Added
+- UFolder 로우의 마우스 호버(Hover) 및 클릭/선택(Active) 시각적 피드백 효과를 USS 스타일시트 규칙으로 추가 및 확장 지원
+
 ## [1.4.1] - 2026-05-31
 ### Refactored
 - C# 코드가 행 아이콘(viewItem.Icon)에 직접 스타일을 주입하는 대신, RowContainer에 USS 스타일 클래스를 부여하고 USS Descendant Selector(`.hierarchy-item__icon`)를 활용하여 내장 폴더 아이콘을 교체하도록 아키텍처 개선

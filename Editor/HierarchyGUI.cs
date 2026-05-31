@@ -16,6 +16,9 @@ namespace NKStudio
 
         private static readonly string[] UFolderClassNames = new string[]
         {
+            "ufolder-row",
+            "ufolder-row-dark",
+            "ufolder-row-light",
             "ufolder-dark-active-child-expanded",
             "ufolder-dark-active-child-collapsed",
             "ufolder-dark-active-empty",
@@ -191,6 +194,9 @@ namespace NKStudio
                     string styleClass = GetFolderStyleClass(viewItem, go);
                     if (!string.IsNullOrEmpty(styleClass) && viewItem.RowContainer != null)
                     {
+                        bool isPro = EditorGUIUtility.isProSkin;
+                        viewItem.RowContainer.AddToClassList("ufolder-row");
+                        viewItem.RowContainer.AddToClassList(isPro ? "ufolder-row-dark" : "ufolder-row-light");
                         viewItem.RowContainer.AddToClassList(styleClass);
                     }
                 }

@@ -56,3 +56,24 @@
 .unity-multi-column-view__row-container.ufolder-light-deactive-empty .hierarchy-item__icon {
     background-image: resource("FolderEmpty On Icon");
 }
+
+
+/* --- Hover & Active States --- */
+
+/* Dark theme - Hover / Active */
+.unity-multi-column-view__row-container.ufolder-row-dark:hover {
+    background-color: var(--unity-colors-highlight-background-hover, rgba(255, 255, 255, 0.04));
+}
+
+.unity-multi-column-view__row-container.ufolder-row-dark:active {
+    background-color: var(--unity-colors-highlight-background-active, rgba(255, 255, 255, 0.08));
+}
+
+/* Light theme - Hover / Active */
+.unity-multi-column-view__row-container.ufolder-row-light:hover {
+    background-color: var(--unity-colors-highlight-background-hover, rgba(0, 0, 0, 0.04));
+}
+
+.unity-multi-column-view__row-container.ufolder-row-light:active {
+    background-color: var(--unity-colors-highlight-background-active, rgba(0, 0, 0, 0.08));
+}
