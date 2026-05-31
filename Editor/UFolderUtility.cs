@@ -11,6 +11,7 @@ namespace NKStudio
     {
         internal static IEnumerable<EditorWindow> GetAllWindowsByType(string type) => Resources.FindObjectsOfTypeAll(typeof(EditorWindow)).Where(obj => obj.GetType().ToString() == type).Select(obj => (EditorWindow)obj);
         
+#if !UNITY_6000_4_OR_NEWER
         /// <summary>
         /// Hierarchy 뷰에서 대상 GameObject가 열려있는지 확인합니다.
         /// </summary>
@@ -45,6 +46,7 @@ namespace NKStudio
 
             return null;
         }
+#endif
 
         [MenuItem("Tools/UFolder/About", priority = int.MaxValue)]
         private static void About()

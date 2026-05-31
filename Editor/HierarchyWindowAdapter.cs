@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+#if !UNITY_6000_4_OR_NEWER
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -104,3 +105,4 @@ namespace NKStudio
         }
     }
 }
+#endif
