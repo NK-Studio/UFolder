@@ -1,4 +1,8 @@
 # Changelog
+## [1.4.0] - 2026-05-31
+### Added
+- Unity 6.5+ 신규 Hierarchy API 커스텀 폴더 아이콘을 C# procedural 방식에서 UI Toolkit USS (.uss) 스타일시트 방식으로 전면 마이그레이션 및 적용
+
 ## [1.3.1] - 2026-05-31
 ### Fixed
 - Unity 6.5 환경에서 BindViewItem 호출 시 아이콘 스타일(배경 이미지)이 정상적으로 초기화(Reset)되지 않던 버그 수정

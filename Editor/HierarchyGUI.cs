@@ -12,6 +12,24 @@ namespace NKStudio
     [InitializeOnLoad]
     public class HierarchyGUI : Editor
     {
+        private static StyleSheet _cachedStyleSheet;
+
+        private static readonly string[] UFolderClassNames = new string[]
+        {
+            "ufolder-dark-active-child-expanded",
+            "ufolder-dark-active-child-collapsed",
+            "ufolder-dark-active-empty",
+            "ufolder-light-active-child-expanded",
+            "ufolder-light-active-child-collapsed",
+            "ufolder-light-active-empty",
+            "ufolder-dark-deactive-child-expanded",
+            "ufolder-dark-deactive-child-collapsed",
+            "ufolder-dark-deactive-empty",
+            "ufolder-light-deactive-child-expanded",
+            "ufolder-light-deactive-child-collapsed",
+            "ufolder-light-deactive-empty"
+        };
+
         static HierarchyGUI()
         {
             if (EditorApplication.isPlaying)
@@ -22,6 +40,7 @@ namespace NKStudio
             EditorApplication.hierarchyWindowItemOnGUI += (id, _) => HierarchyWindowItemOnGUI(id);
 #elif UNITY_6000_5_OR_NEWER
             // Unity 6.5 이상: UI Toolkit 신규 API 사용
+            HierarchyWindow.BindView += OnBindView;
             HierarchyWindow.BindViewItem += OnBindViewItem;
 #else
             // Unity 6.4: 아무 작업도 수행하지 않아 폴더 기능 비활성화
@@ -142,6 +161,14 @@ namespace NKStudio
 
 #if UNITY_6000_5_OR_NEWER
         /// <summary>
+        /// Unity 6.5+ BindView 콜백 함수 (스타일시트 주입)
+        /// </summary>
+        private static void OnBindView(HierarchyWindow window, HierarchyView view)
+        {
+            LoadAndApplyStyleSheet(view);
+        }
+
+        /// <summary>
         /// Unity 6.5+ BindViewItem 콜백 함수
         /// </summary>
         private static void OnBindViewItem(HierarchyWindow window, HierarchyView view, HierarchyViewItem viewItem)
@@ -161,68 +188,67 @@ namespace NKStudio
             {
                 if (go.CompareTag("Folder"))
                 {
-                    Texture2D icon = GetFolderIcon(viewItem, go);
-                    if (icon != null && viewItem.Icon != null)
+                    string styleClass = GetFolderStyleClass(viewItem, go);
+                    if (!string.IsNullOrEmpty(styleClass) && viewItem.Icon != null)
                     {
-                        viewItem.Icon.style.backgroundImage = new StyleBackground(icon);
+                        viewItem.Icon.AddToClassList(styleClass);
                     }
                 }
             }
         }
 
         /// <summary>
-        /// ViewItem의 이전 스타일(배경 이미지 오버라이드)을 초기화합니다.
+        /// ViewItem의 이전 스타일(USS 클래스 오버라이드)을 초기화합니다.
         /// </summary>
         private static void ResetViewItemStyle(HierarchyViewItem viewItem)
         {
             if (viewItem.Icon != null)
             {
-                viewItem.Icon.style.backgroundImage = null;
+                foreach (var className in UFolderClassNames)
+                {
+                    viewItem.Icon.RemoveFromClassList(className);
+                }
             }
         }
 
         /// <summary>
-        /// Unity 6.5+ 뷰 아이템 정보를 기반으로 폴더 아이콘 텍스쳐 결정
+        /// 스타일시트를 로드하고 뷰에 적용합니다.
         /// </summary>
-        private static Texture2D GetFolderIcon(HierarchyViewItem viewItem, GameObject obj)
+        private static void LoadAndApplyStyleSheet(HierarchyView view)
         {
-            int childCount = obj.transform.childCount;
-            bool isExpanded = viewItem.View != null ? viewItem.View.IsExpanded(viewItem.Node) : false;
-            
-            string iconName;
-            bool hasChild = childCount > 0;
-            
-            if (obj.activeInHierarchy)
+            if (_cachedStyleSheet == null)
             {
-                if (hasChild)
+                // 1순위: 패키지 공식 경로 기준 로드
+                _cachedStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.nkstudio.ufolder/Editor/UFolderStyle.uss");
+                if (_cachedStyleSheet == null)
                 {
-                    if (EditorGUIUtility.isProSkin)
-                        iconName = isExpanded ? "FolderOpened On Icon" : "Folder On Icon";
-                    else
-                        iconName = isExpanded ? "FolderOpened Icon" : "Folder Icon";
-                }
-                else
-                {
-                    iconName = EditorGUIUtility.isProSkin ? "FolderEmpty On Icon" : "FolderEmpty Icon";
-                }
-            }
-            else
-            {
-                if (hasChild)
-                {
-                    if (EditorGUIUtility.isProSkin)
-                        iconName = isExpanded ? "FolderOpened Icon" : "Folder Icon";
-                    else
-                        iconName = isExpanded ? "FolderOpened On Icon" : "Folder On Icon";
-                }
-                else
-                {
-                    iconName = EditorGUIUtility.isProSkin ? "FolderEmpty Icon" : "FolderEmpty On Icon";
+                    // 2순위: 로컬 에셋 폴더 경로 기준 로드
+                    _cachedStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/com.nkstudio.ufolder@18ffc1b77594/Editor/UFolderStyle.uss");
                 }
             }
 
-            GUIContent folderIconContent = EditorGUIUtility.IconContent(iconName);
-            return folderIconContent.image as Texture2D;
+            if (_cachedStyleSheet != null && !view.styleSheets.Contains(_cachedStyleSheet))
+            {
+                view.styleSheets.Add(_cachedStyleSheet);
+            }
+        }
+
+        /// <summary>
+        /// Unity 6.5+ 뷰 아이템 정보를 기반으로 매칭할 USS 클래스 결정
+        /// </summary>
+        private static string GetFolderStyleClass(HierarchyViewItem viewItem, GameObject obj)
+        {
+            int childCount = obj.transform.childCount;
+            bool isExpanded = viewItem.View != null ? viewItem.View.IsExpanded(viewItem.Node) : false;
+            bool hasChild = childCount > 0;
+            bool isPro = EditorGUIUtility.isProSkin;
+
+            string theme = isPro ? "dark" : "light";
+            string activeState = obj.activeInHierarchy ? "active" : "deactive";
+            string childState = hasChild ? (isExpanded ? "child-expanded" : "child-collapsed") : "empty";
+
+            // ufolder-{theme}-{activeState}-{childState} 형식의 클래스명 빌드
+            return $"ufolder-{theme}-{activeState}-{childState}";
         }
 #endif
     }

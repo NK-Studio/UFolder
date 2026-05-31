@@ -1,0 +1,58 @@
+/* UFolder USS Style Sheet for Unity 6.5+ */
+
+/* --- Active Folders --- */
+
+/* Dark skin - Active */
+.ufolder-dark-active-child-expanded {
+    background-image: resource("FolderOpened On Icon");
+}
+
+.ufolder-dark-active-child-collapsed {
+    background-image: resource("Folder On Icon");
+}
+
+.ufolder-dark-active-empty {
+    background-image: resource("FolderEmpty On Icon");
+}
+
+/* Light skin - Active */
+.ufolder-light-active-child-expanded {
+    background-image: resource("FolderOpened Icon");
+}
+
+.ufolder-light-active-child-collapsed {
+    background-image: resource("Folder Icon");
+}
+
+.ufolder-light-active-empty {
+    background-image: resource("FolderEmpty Icon");
+}
+
+
+/* --- DeActive Folders --- */
+
+/* Dark skin - DeActive */
+.ufolder-dark-deactive-child-expanded {
+    background-image: resource("FolderOpened Icon");
+}
+
+.ufolder-dark-deactive-child-collapsed {
+    background-image: resource("Folder Icon");
+}
+
+.ufolder-dark-deactive-empty {
+    background-image: resource("FolderEmpty Icon");
+}
+
+/* Light skin - DeActive */
+.ufolder-light-deactive-child-expanded {
+    background-image: resource("FolderOpened On Icon");
+}
+
+.ufolder-light-deactive-child-collapsed {
+    background-image: resource("Folder On Icon");
+}
+
+.ufolder-light-deactive-empty {
+    background-image: resource("FolderEmpty On Icon");
+}
