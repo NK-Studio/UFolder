@@ -1,4 +1,10 @@
 # Changelog
+## [1.3.0] - 2026-05-31
+### Added
+- Unity 6.5 버전 이상에서 UI Toolkit 기반의 새로운 Hierarchy API (`HierarchyWindow.BindViewItem`) 지원 추가
+- Unity 6.4 버전에서 안전한 폴더 기능 일시 비활성화 처리
+- Unity 6.3 이하 버전에서 기존 IMGUI 기반 하위 호환성 유지
+
 ## [1.2.1] - 2024-06-05
 ### Fixed
 - 플레이 모드 해제시 GUI 에러가 발생하는 이슈 수정
