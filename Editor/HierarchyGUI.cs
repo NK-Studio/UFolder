@@ -146,6 +146,8 @@ namespace NKStudio
         /// </summary>
         private static void OnBindViewItem(HierarchyWindow window, HierarchyView view, HierarchyViewItem viewItem)
         {
+            ResetViewItemStyle(viewItem);
+
             if (viewItem.Handler is not HierarchyGameObjectHandler gameObjectHandler)
                 return;
 
@@ -165,6 +167,17 @@ namespace NKStudio
                         viewItem.Icon.style.backgroundImage = new StyleBackground(icon);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// ViewItem의 이전 스타일(배경 이미지 오버라이드)을 초기화합니다.
+        /// </summary>
+        private static void ResetViewItemStyle(HierarchyViewItem viewItem)
+        {
+            if (viewItem.Icon != null)
+            {
+                viewItem.Icon.style.backgroundImage = null;
             }
         }
 

@@ -1,4 +1,8 @@
 # Changelog
+## [1.3.1] - 2026-05-31
+### Fixed
+- Unity 6.5 환경에서 BindViewItem 호출 시 아이콘 스타일(배경 이미지)이 정상적으로 초기화(Reset)되지 않던 버그 수정
+
 ## [1.3.0] - 2026-05-31
 ### Added
 - Unity 6.5 버전 이상에서 UI Toolkit 기반의 새로운 Hierarchy API (`HierarchyWindow.BindViewItem`) 지원 추가
